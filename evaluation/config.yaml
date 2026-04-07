@@ -1,0 +1,16 @@
+api:
+  api_key: ""
+  model_url: "https://api.deepseek.com" # DeepSeek-V3.2 
+  model_name: "deepseek-chat" 
+
+model:
+  temperature: 0.0
+  seed: 42
+  
+
+paths:
+  prompt_path: "../prompt.txt"
+  test_batch: "results_change_wires_3_gates_3"
+  original_path: "../generated_cases/v1/results"
+  reference_path: "../generated_cases/v1/"
+  output_prefix: "./test_results/v1"

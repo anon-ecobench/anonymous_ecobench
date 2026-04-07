@@ -1,0 +1,11 @@
+current_module top
+disconnect_net g1/0
+disconnect_net g1/1
+disconnect_net g1/2
+create_cell xnor eco_inst_1
+connect_net a eco_inst_1/1
+connect_net b eco_inst_1/2
+connect_net eco_inst_1/0 z
+#create_net gg eco_inst_1/0
+#connect_net gg z
+end_current_module top

@@ -1,0 +1,235 @@
+// module l14_g209_i13_o46
+//  max logic level: 14
+//  number of gates: 209
+//  number of inputs: 13
+//  number of outputs: 46
+module net_l14_g209_i13_o46(in1, in2, in3, in4, in5, in6, in7, in8, in9, in10, in11, in12, in13, out1, out2, out3, out4, out5, out6, out7, out8, out9, out10, out11, out12, out13, out14, out15, out16, out17, out18, out19, out20, out21, out22, out23, out24, out25, out26, out27, out28, out29, out30, out31, out32, out33, out34, out35, out36, out37, out38, out39, out40, out41, out42, out43, out44, out45, out46);
+  input in1, in2, in3, in4, in5, in6, in7, in8, in9, in10, in11, in12, in13;
+  output out1, out2, out3, out4, out5, out6, out7, out8, out9, out10, out11, out12, out13, out14, out15, out16, out17, out18, out19, out20, out21, out22, out23, out24, out25, out26, out27, out28, out29, out30, out31, out32, out33, out34, out35, out36, out37, out38, out39, out40, out41, out42, out43, out44, out45, out46;
+
+  wire n1,n2,n3,n4,n5,n6,n7,n8,n9,n10,n11,n12,n13,n14,n15,n16,n17,n18,n19,n20,n21,n22,n23,n24,n25,n26,n27,n28,n29,n30,n31,n32,n33,n34,n35,n36,n37,n38,n39,n40,n41,n42,n43,n44,n45,n46,n47,n48,n49,n50,n51,n52,n53,n54,n55,n56,n57,n58,n59,n60,n61,n62,n63,n64,n65,n66,n67,n68,n69,n70,n71,n72,n73,n74,n75,n76,n77,n78,n79,n80,n81,n82,n83,n84,n85,n86,n87,n88,n89,n90,n91,n92,n93,n94,n95,n96,n97,n98,n99,n100,n101,n102,n103,n104,n105,n106,n107,n108,n109,n110,n111,n112,n113,n116,n117,n118,n119,n121,n122,n123,n124,n125,n126,n127,n128,n129,n131,n132,n133,n134,n135,n136,n137,n138,n139,n140,n142,n143,n144,n145,n146,n147,n148,n149,n150,n151,n153,n154,n155,n156,n157,n158,n159,n160,n161,n163,n164,n165,n166,n167,n168,n169,n170;
+
+  // Level 1
+  or g0 (n1, in1, in2);
+  xor g1 (n2, in2, in3);
+  xor g2 (n3, in3, in4);
+  xor g3 (n4, in4, in5);
+  xor g4 (n5, in5, in6);
+  xor g5 (n6, in6, in7);
+  and g6 (n7, in7, in8);
+  xor g7 (n8, in10, in11);
+  xor g11 (n12, in8, in7);
+  not g30 (n31, in13);
+  // Level 2
+  and g8 (n9, in12, n6);
+  xor g9 (n10, in10, n5);
+  and g10 (n11, in8, n3);
+  xor g12 (n13, n2, n1);
+  not g13 (n14, n3);
+  xor g14 (n15, n6, n5);
+  xor g17 (n18, n8, in11);
+  xor g20 (n21, n12, n8);
+  xor g23 (n24, n1, in13);
+  // Level 3
+  xor g15 (n16, n13, n4);
+  xor g16 (n17, n2, n13);
+  xor g18 (n19, n13, n2);
+  xor g19 (n20, n9, n10);
+  and g21 (n22, n14, n7);
+  xor g22 (n23, n14, n12);
+  xor g25 (n26, n18, n9);
+  xor g26 (n27, n10, n18);
+  xor g27 (n28, in12, n18);
+  not g28 (n29, n21);
+  not g31 (n32, n11);
+  or g35 (n36, n31, n9);
+  // Level 4
+  xor g24 (n25, n20, n19);
+  xor g29 (n30, n17, n3);
+  xor g34 (n35, n16, n26);
+  xor g36 (n37, n28, n10);
+  xor g38 (n39, n19, n16);
+  or g39 (n40, n29, n7);
+  xor g40 (n41, n20, n26);
+  xor g41 (n42, n29, n7);
+  xor g49 (n50, n15, n17);
+  xor g50 (n51, n24, n27);
+  xor g51 (n52, n12, n32);
+  xor g54 (n55, n27, n22);
+  // Level 5
+  xor g32 (n33, n8, n25);
+  and g33 (n34, n31, n25);
+  or g37 (n38, n30, n21);
+  xor g42 (n43, n28, n35);
+  xor g43 (n44, n41, n36);
+  xor g47 (n48, n40, n23);
+  and g52 (n53, n11, n30);
+  and g53 (n54, n50, n17);
+  xor g55 (n56, n51, n32);
+  xor g57 (n58, n24, n40);
+  xor g60 (n61, n37, n16);
+  xor g61 (n62, n35, n28);
+  not g68 (n69, n55);
+  // Level 6
+  or g44 (n45, n34, n29);
+  xor g45 (n46, n20, n33);
+  and g46 (n47, n37, n33);
+  xor g48 (n49, n36, n38);
+  xor g56 (n57, n34, n42);
+  xor g58 (n59, n44, n38);
+  xor g59 (n60, n38, n50);
+  xor g63 (n64, n54, n51);
+  xor g64 (n65, n62, n52);
+  xor g65 (n66, n43, n50);
+  xor g70 (n71, n23, n48);
+  xor g71 (n72, n48, n44);
+  and g72 (n73, n55, n58);
+  not g76 (n77, n58);
+  not g81 (n82, n61);
+  xor g86 (n87, n43, n69);
+  // Level 7
+  or g62 (n63, n27, n45);
+  xor g66 (n67, n46, n56);
+  xor g67 (n68, n57, n19);
+  xor g69 (n70, n56, n57);
+  xor g73 (n74, n59, n42);
+  xor g74 (n75, n49, n22);
+  xor g77 (n78, n55, n71);
+  xor g79 (n80, n41, n47);
+  xor g80 (n81, n51, n64);
+  xor g83 (n84, n62, n65);
+  not g84 (n85, n59);
+  xor g85 (n86, n69, n60);
+  and g87 (n88, n46, in3);
+  xor g93 (n94, n72, n3);
+  and g98 (n99, n73, n47);
+  xor g99 (n100, n66, n64);
+  xor g106 (n107, n39, n22);
+  xor g142 (n143, n65, n82);
+  // Level 8
+  not g75 (n76, n68);
+  not g78 (n79, n68);
+  xor g82 (n83, n72, n70);
+  xor g88 (n89, n54, n68);
+  xor g90 (n91, n84, n69);
+  xor g91 (n92, n81, n56);
+  and g94 (n95, n52, n75);
+  xor g95 (n96, n78, n58);
+  xor g96 (n97, n70, n28);
+  or g101 (n102, n75, n73);
+  not g110 (n111, n28);
+  xor g116 (n117, n94, n18);
+  xor g117 (n118, n53, n73);
+  or g122 (n123, n107, n100);
+  not g124 (n125, n75);
+  or g127 (n128, n84, n82);
+  not g136 (n137, n80);
+  buf g211 (out41, n86);
+  // Level 9
+  and g89 (n90, n79, n63);
+  or g92 (n93, n76, n64);
+  xor g97 (n98, n76, n85);
+  not g102 (n103, in7);
+  and g103 (n104, n92, n49);
+  xor g105 (n106, n49, n83);
+  or g107 (n108, n84, n96);
+  and g108 (n109, n91, n95);
+  xor g111 (n112, n83, n97);
+  xor g118 (n119, n80, n91);
+  and g120 (n121, n96, n45);
+  xor g123 (n124, n63, n102);
+  or g126 (n127, n65, n92);
+  xor g128 (n129, n78, n18);
+  not g134 (n135, n128);
+  xor g137 (n138, n95, n89);
+  xor g141 (n142, n99, n84);
+  not g143 (n144, n137);
+  and g148 (n149, n89, n123);
+  xor g164 (n165, n85, n137);
+  xor g188 (out18, n117, n118);
+  // Level 10
+  xor g100 (n101, n71, n90);
+  xor g104 (n105, n73, n93);
+  xor g109 (n110, n98, n39);
+  xor g112 (n113, n96, n98);
+  xor g115 (n116, n99, n60);
+  xor g121 (n122, n53, n112);
+  xor g125 (n126, n90, n108);
+  and g131 (n132, n129, n71);
+  or g132 (n133, n77, n106);
+  xor g133 (n134, n53, n129);
+  or g146 (n147, n90, n144);
+  xor g150 (n151, n125, n127);
+  and g153 (n154, n121, n142);
+  xor g155 (n156, n106, n67);
+  xor g156 (n157, n128, n103);
+  xor g158 (n159, n144, n109);
+  and g166 (n167, n149, n118);
+  xor g168 (n169, n121, n94);
+  or g169 (n170, n123, n104);
+  xor g171 (out1, n85, n138);
+  and g175 (out5, n143, n108);
+  xor g196 (out26, n124, n137);
+  xor g197 (out27, n138, n67);
+  xor g201 (out31, n143, n127);
+  xor g209 (out39, n88, n103);
+  // Level 11
+  xor g130 (n131, n113, n107);
+  xor g135 (n136, n88, n110);
+  xor g139 (n140, n132, n67);
+  xor g144 (n145, n111, n126);
+  xor g149 (n150, n116, n134);
+  xor g154 (n155, n92, n126);
+  xor g162 (n163, n147, n154);
+  xor g165 (n166, n122, n104);
+  xor g177 (out7, n105, n133);
+  xor g179 (out9, n135, n169);
+  xor g181 (out11, n105, n157);
+  and g182 (out12, n156, n112);
+  not g183 (out13, n169);
+  or g184 (out14, n169, n165);
+  buf g187 (out17, n157);
+  xor g189 (out19, n156, n151);
+  xor g190 (out20, n110, n80);
+  xor g202 (out32, n123, n170);
+  xor g203 (out33, n122, n101);
+  xor g204 (out34, n132, n121);
+  xor g205 (out35, n60, n154);
+  xor g210 (out40, n167, n170);
+  xor g213 (out43, n113, n165);
+  xor g215 (out45, n112, n167);
+  // Level 12
+  xor g138 (n139, n131, n82);
+  xor g145 (n146, n136, n106);
+  and g147 (n148, n144, n140);
+  xor g152 (n153, n107, n136);
+  xor g159 (n160, n143, n150);
+  xor g160 (n161, n111, n140);
+  xor g163 (n164, n155, n159);
+  xor g167 (n168, n117, n155);
+  xor g174 (out4, n166, n142);
+  or g192 (out22, n166, n9);
+  xor g207 (out37, n150, n77);
+  xor g212 (out42, n166, n101);
+  // Level 13
+  or g157 (n158, n153, n126);
+  xor g172 (out2, n140, n146);
+  and g173 (out3, n124, n78);
+  xor g176 (out6, n94, n161);
+  xor g178 (out8, n145, n139);
+  xor g180 (out10, n164, n148);
+  xor g185 (out15, n147, n157);
+  xor g186 (out16, n164, n149);
+  xor g193 (out23, n139, n87);
+  or g194 (out24, n147, n146);
+  or g195 (out25, n116, n168);
+  and g198 (out28, n160, n88);
+  or g199 (out29, n146, n124);
+  or g200 (out30, n74, n160);
+  and g208 (out38, n168, n163);
+  or g216 (out46, n164, n41);
+  // Level 14
+  or g191 (out21, n74, n40);
+  xor g206 (out36, n158, n41);
+  xor g214 (out44, n86, n76);
+endmodule

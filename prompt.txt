@@ -1,0 +1,238 @@
+The prompt
+
+Perform a Engineering Change Order (ECO) task based on two Verilog netlists: original.v and reference.v. 
+The ECO task is to modify the original netlist to achieve functional equivalence to the reference netlist.
+The modification should be described using the ECO instructions, with each representing an individual ECO step.
+Only primitive logic gates, including AND, OR, NAND, NOR, XNOR, XOR and NOT gates, are allowed in the netlists.
+Modification with a lower cost is preferred.
+The names of all the additional logic gates should start with a prefix 'eco_'.
+At the end of your response, please output all generated ECO instructions within a single ``` code block. Do not use ``` code blocks for any other part of your output except for your final instruction. Ensure the final instruction block contains only the raw instructions without any analysis or additional explanation.
+
+ECO Instruction Set:
+
+- current_module <unique module name in the current netlist>	# Navigate into a module, begin modification
+- end_current_module <unique module name in the current netlist>	# Exit a module, finish modificaion
+
+- create_cell <instance type> <new instance name>	# Create a cell with a specified primitive type
+
+-connect_net <source> <sink>: Connect a source to a sink.
+
+  source can be: instance/pin (e.g., g1/0) or an input port of the module.
+
+  sink can be: instance/pin (e.g., g2/1) or an output port of the module.
+
+- disconnect_net <pin name>	# Disconnect a wire from all its connection
+
+Escaped Identifier Rule:
+
+An escaped identifier must start with \ and end with a space.
+When referencing a pin of an escaped identifier, the space must appear before the pin index. Such as \abc/123/def /0
+
+
+Cost = #wires disconnected + #wires connected + #additional logic gates x 2
+
+Question1:
+
+// original.v
+```
+module top(a, b, z, D);
+  input a, b;
+  output z, D;
+  xor g1 (z, a, b);
+  buf g2 (D, 1'b0);
+endmodule
+```
+
+// reference.v
+```
+module top_reference(a, b, z, D);
+  input a, b;
+  output z, D;
+  nand g1 (z, a, b);
+  buf g2 (D, 1'b1);
+endmodule
+```
+Compute the modification instructions and the cost.
+
+Answer:
+
+
+Instructions:
+```
+current_module top
+disconnect_net g2/0
+disconnect_net g1/0
+disconnect_net g1/1
+disconnect_net g1/2
+create_cell nand eco_inst_1
+connect_net a eco_inst_1/1
+connect_net b eco_inst_1/2
+connect_net eco_inst_1/0 z
+connect_net 1'b1 D
+end_current_module top
+```
+
+The changes to be made in original.v:
+	- 4 wire disconnect
+	- 4 wires connect
+	- 1 new logic gates
+
+Cost = (4 + 4) + 2*(1) = 10
+
+
+Question2:
+
+// original.v
+```
+module top(a, b, z);
+  input a, b;
+  output z;
+  xor g1 (z, a, b);
+endmodule
+```
+
+// reference.v
+```
+module top_reference(a, b, z);
+  input a, b;
+  output z;
+  
+  not g1 (n1, a);
+  not g2 (n2, b);
+
+  and g3 (n3, a, n2);
+  and g4 (n4, n1, b);
+  nor g5 (z, n3, n4);
+endmodule
+```
+
+Compute the modified netlist and the modification instruction set with the lowest cost.
+
+Answer:
+
+In this question, reference.v should be optimized so that it resembles original.v as close as possible. 
+
+n3 | n4 = (a & ~b) | (~a & b) = a ^ b
+z = ~(a ^ b) = a XNOR b
+
+The entire logic in reference.v can be replaced with a single XNOR gate.
+We can either add a NOT gate at the end of original.v or replace the XOR gate with a XNOR gate.
+
+
+Option 1: Insert a NOT gate
+
+The modified netlist should be
+
+```
+module top(input a, input b, output z);
+  xor g1 (eco_n1, a, b);
+  not eco_inst_1 (z, eco_n1);
+endmodule
+```
+
+Instructions:
+```
+current_module top
+disconnect_net g1/0
+create_cell not eco_inst_1
+connect_net g1/0 eco_inst_1/1
+connect_net eco_inst_1/0 z
+end_current_module top
+```
+
+You can directly connect g1/0 and eco_inst_1/1, do not use any wire name.
+
+The changes to be made in original.v:
+	- 1 wire disconnect
+	- 2 wires connect
+	- 1 new logic gates
+
+Cost = (1 + 2) + 2*(1) = 5
+
+
+Option 2: Replacing the XOR gate with a XNOR gate
+
+The modified netlist should be
+
+```
+module top(input a, input b, output z);
+  xnor eco_inst_1 (z, a, b);
+endmodule
+```
+
+Instructions:
+```
+current_module top
+disconnect_net g1/0
+disconnect_net g1/1
+disconnect_net g1/2
+create_cell xnor eco_inst_1
+connect_net a eco_inst_1/1
+connect_net b eco_inst_1/2
+connect_net eco_inst_1/0 z
+end_current_module top
+```
+
+The changes to be made in original.v:
+	- 3 wire disconnect
+	- 3 wires connect
+	- 1 new logic gates
+
+Cost = (3 + 3) + 2*(1) = 8
+
+Option 1 has a lower cost, it is the final answer.
+
+Question3:
+// original.v
+```
+module top3(in2, in3, in18, in19, in22, in23, out1);
+  input in2, in3, in18, in19, in22, in23;
+  output out1;
+
+  // Level 1
+  or g1 (n2, in2, in3);
+  xor g21 (n22, in22, in23);
+  xor g69 (n70, in18, in19);
+  // Level 2
+  not g145 (n146, n70);
+  xor g148 (n149, n2, n22);
+  // Level 3
+  xor g257 (out1, n146, n149);
+endmodule
+```
+
+// reference.v
+```
+module top(in2, in3, in18, in19, in22, in23, out1);
+  input in2, in3, in18, in19, in22, in23;
+  output out1;
+
+  // Level 1
+  or g1 (n2, in2, in3);
+  xor g21 (n22, in22, in23);
+  xor g69 (n70, in18, in19);
+  // Level 2
+  buf g145 (n146, in2);
+  or g148 (n149, n2, in2);
+  // Level 3
+  or g257 (out1, n146, n22);
+endmodule
+```
+
+instruction:
+```
+current_module top
+disconnect_net g145/1
+disconnect_net g145/0
+disconnect_net g257/1
+disconnect_net g257/2
+disconnect_net g257/0
+create_cell buf eco_buf
+create_cell or eco_or
+connect_net in2 eco_buf/1
+connect_net eco_buf/0 eco_or/1
+connect_net g21/0 eco_or/2
+connect_net eco_or/0 out1
+end_current_module top
+```
+As demonstrated in the example, use direct pin-to-pin connections (e.g., connect_net g21/0 eco_or/2) instead of referencing internal wire names like n22
